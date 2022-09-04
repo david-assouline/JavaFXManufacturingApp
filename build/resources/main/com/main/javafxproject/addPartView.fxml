@@ -30,12 +30,12 @@
       <TextField layoutX="381.0" layoutY="259.0" />
       <Button layoutX="197.0" layoutY="339.0" mnemonicParsing="false" text="Save" />
       <Button layoutX="251.0" layoutY="339.0" mnemonicParsing="false" text="Cancel" />
-      <Label fx:id="MachineCompanyLabel" layoutX="83.0" layoutY="303.0" text="Machine ID" />
-      <Label layoutX="86.0" layoutY="265.0" text="Max" />
-      <Label layoutX="86.0" layoutY="229.0" text="Price/Cost" />
-      <Label layoutX="86.0" layoutY="194.0" text="Inv" />
-      <Label layoutX="86.0" layoutY="153.0" text="Name" />
-      <Label layoutX="86.0" layoutY="117.0" text="ID" />
+      <Label fx:id="MachineCompanyLabel" layoutX="78.0" layoutY="303.0" text="Machine ID" />
+      <Label layoutX="77.0" layoutY="263.0" text="Max" />
+      <Label layoutX="76.0" layoutY="229.0" text="Price/Cost" />
+      <Label layoutX="76.0" layoutY="194.0" text="Inv" />
+      <Label layoutX="76.0" layoutY="153.0" text="Name" />
+      <Label layoutX="76.0" layoutY="117.0" text="ID" />
       <Label layoutX="341.0" layoutY="263.0" text="Min" />
    </children>
 </AnchorPane>
