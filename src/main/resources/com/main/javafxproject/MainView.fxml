@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="416.0" prefWidth="926.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.main.javafxproject.controllers.MainController">
+<AnchorPane prefHeight="416.0" prefWidth="926.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.main.javafxproject.Controllers.MainController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="TRANSPARENT" height="268.0" layoutX="462.0" layoutY="79.0" stroke="BLACK" strokeType="INSIDE" width="430.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="TRANSPARENT" height="268.0" layoutX="10.0" layoutY="79.0" stroke="BLACK" strokeType="INSIDE" width="430.0" />
@@ -20,10 +20,10 @@
       </Text>
       <TableView fx:id="partsTable" layoutX="35.0" layoutY="109.0" prefHeight="200.0" prefWidth="380.0">
         <columns>
-          <TableColumn prefWidth="52.799983978271484" text="Part ID" />
-          <TableColumn prefWidth="75.99996948242188" text="Part Name" />
-            <TableColumn prefWidth="104.00001525878906" text="Inventory Level" />
-            <TableColumn prefWidth="145.5999755859375" text="Price/Cost per unit" />
+          <TableColumn fx:id="partsTablePartId" prefWidth="52.799983978271484" text="Part ID" />
+          <TableColumn fx:id="partsTablePartName" prefWidth="75.99996948242188" text="Part Name" />
+            <TableColumn fx:id="partsTableInventoryLevel" prefWidth="104.00001525878906" text="Inventory Level" />
+            <TableColumn fx:id="partsTablePriceCost" prefWidth="145.5999755859375" text="Price/Cost per unit" />
         </columns>
       </TableView>
       <TableView layoutX="487.0" layoutY="108.0" prefHeight="200.0" prefWidth="380.0">

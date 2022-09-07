@@ -1,15 +1,19 @@
-package com.main.javafxproject.controllers;
+package com.main.javafxproject.Controllers;
 
-import com.main.javafxproject.model.InHouse;
-import com.main.javafxproject.model.Inventory;
-import com.main.javafxproject.toolkit.JavaFXHelper;
-import com.main.javafxproject.model.Outsourced;
+import com.main.javafxproject.Main;
+import com.main.javafxproject.Model.InHouse;
+import com.main.javafxproject.Model.Inventory;
+import com.main.javafxproject.Model.Outsourced;
+import com.main.javafxproject.Toolkit.Utility;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
+import java.io.IOException;
 import java.util.Random;
+
+import static com.main.javafxproject.Toolkit.Utility.getStage;
 
 public class AddPartController {
 
@@ -53,13 +57,13 @@ public class AddPartController {
     }
 
     @FXML
-    void addPartSaveButton(ActionEvent event) {
+    void addPartSaveButton(ActionEvent event) throws IOException {
         Random rand = new Random();
 
         int id = rand.nextInt(1000000);
         String name = addPartName.getText();
-        Double price = Double.parseDouble(addPartInv.getText());
-        int stock = Integer.parseInt(addPartPriceCost.getText());
+        Double price = Double.parseDouble(addPartPriceCost.getText());
+        int stock = Integer.parseInt(addPartInv.getText());
         int max = Integer.parseInt(addPartMax.getText());
         int min = Integer.parseInt(addPartMin.getText());
         int machineId;
@@ -74,12 +78,13 @@ public class AddPartController {
             Outsourced outsourced = new Outsourced(id, name, price, stock, max, min, companyName);
             Inventory.addPart(outsourced);
         }
-        JavaFXHelper.closeWindow(event);
-
+        Utility.closeWindow(event);
+        getStage(Main.class.getResource("MainView.fxml"), "Add Part", getClass());
     }
 
     @FXML
-    void addPartCancelButton(ActionEvent event){
-        JavaFXHelper.closeWindow(event);
+    void addPartCancelButton(ActionEvent event) throws IOException {
+        Utility.closeWindow(event);
+        getStage(Main.class.getResource("MainView.fxml"), "Add Part", getClass());
     }
 }

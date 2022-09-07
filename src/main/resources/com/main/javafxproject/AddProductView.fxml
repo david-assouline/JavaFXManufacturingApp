@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Text?>
 
 
-<AnchorPane prefHeight="610.0" prefWidth="882.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.main.javafxproject.controllers.AddProductController">
+<AnchorPane prefHeight="610.0" prefWidth="882.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.main.javafxproject.Controllers.AddProductController">
    <children>
       <Text layoutX="65.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Product">
          <font>

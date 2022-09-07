@@ -1,4 +1,4 @@
-package com.main.javafxproject.model;
+package com.main.javafxproject.Model;
 
 public class InHouse extends Part {
 
