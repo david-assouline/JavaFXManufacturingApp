@@ -12,7 +12,6 @@ import java.io.IOException;
 import java.net.URL;
 
 public class Utility {
-    public static final String MAIN_VIEW = "src/main/java/com/main/javafxproject/controllers/MainView.fxml";
 
     public static void getStage(URL targetUrl, String stageTitle, Class classObject) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(targetUrl);

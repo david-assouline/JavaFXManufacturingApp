@@ -16,20 +16,20 @@
                 <Font name="System Bold" size="12.0" />
             </font>
         </Text>
-        <RadioButton layoutX="159.0" layoutY="41.0" mnemonicParsing="false" onAction="#InHouseRadioHandler" selected="true" text="In-House">
+        <RadioButton fx:id="inHouseRadio" layoutX="159.0" layoutY="41.0" mnemonicParsing="false" onAction="#InHouseRadioHandler" selected="true" text="In-House">
             <toggleGroup>
                 <ToggleGroup fx:id="toggleGroup" />
             </toggleGroup></RadioButton>
-        <RadioButton layoutX="306.0" layoutY="41.0" mnemonicParsing="false" onAction="#OutsourcedRadioHandler" text="Outsourced" toggleGroup="$toggleGroup" />
-        <TextField disable="true" editable="false" layoutX="175.0" layoutY="111.0" text="Auto-generated (disabled)" />
-        <TextField layoutX="175.0" layoutY="147.0" />
-        <TextField layoutX="175.0" layoutY="187.0" />
-        <TextField layoutX="175.0" layoutY="223.0" />
-        <TextField layoutX="175.0" layoutY="259.0" />
-        <TextField layoutX="175.0" layoutY="299.0" />
-        <TextField layoutX="381.0" layoutY="259.0" />
-        <Button layoutX="197.0" layoutY="339.0" mnemonicParsing="false" text="Save" />
-        <Button layoutX="251.0" layoutY="339.0" mnemonicParsing="false" text="Cancel" />
+        <RadioButton fx:id="outsourcedRadio" layoutX="306.0" layoutY="41.0" mnemonicParsing="false" onAction="#OutsourcedRadioHandler" text="Outsourced" toggleGroup="$toggleGroup" />
+        <TextField fx:id="modifyPartID" editable="false" layoutX="175.0" layoutY="111.0" />
+        <TextField fx:id="modifyPartName" layoutX="175.0" layoutY="147.0" />
+        <TextField fx:id="modifyPartInv" layoutX="175.0" layoutY="187.0" />
+        <TextField fx:id="modifyPartPriceCost" layoutX="175.0" layoutY="223.0" />
+        <TextField fx:id="modifyPartMax" layoutX="175.0" layoutY="259.0" />
+        <TextField fx:id="modifyPartMachineCompanyID" layoutX="175.0" layoutY="299.0" />
+        <TextField fx:id="modifyPartMin" layoutX="381.0" layoutY="259.0" />
+        <Button layoutX="197.0" layoutY="339.0" mnemonicParsing="false" onAction="#modifyPartSaveButton" text="Save" />
+        <Button layoutX="251.0" layoutY="339.0" mnemonicParsing="false" onAction="#modifyPartCancelButton" text="Cancel" />
         <Label fx:id="MachineCompanyLabel" layoutX="78.0" layoutY="303.0" text="Machine ID" />
         <Label layoutX="77.0" layoutY="263.0" text="Max" />
         <Label layoutX="76.0" layoutY="229.0" text="Price/Cost" />

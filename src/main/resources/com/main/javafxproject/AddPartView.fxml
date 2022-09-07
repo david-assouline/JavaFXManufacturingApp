@@ -21,7 +21,7 @@
             <ToggleGroup fx:id="toggleGroup" />
          </toggleGroup></RadioButton>
       <RadioButton layoutX="306.0" layoutY="41.0" mnemonicParsing="false" onAction="#outsourcedRadioHandler" text="Outsourced" toggleGroup="$toggleGroup" />
-      <TextField fx:id="addPartID" disable="true" editable="false" layoutX="175.0" layoutY="111.0" text="Auto-generated (disabled)" />
+      <TextField disable="true" editable="false" layoutX="175.0" layoutY="111.0" text="Auto-generated (disabled)" />
       <TextField fx:id="addPartName" layoutX="175.0" layoutY="147.0" />
       <TextField fx:id="addPartInv" layoutX="175.0" layoutY="187.0" />
       <TextField fx:id="addPartPriceCost" layoutX="175.0" layoutY="223.0" />
@@ -29,7 +29,7 @@
       <TextField fx:id="addPartMachineCompanyID" layoutX="175.0" layoutY="299.0" />
       <TextField fx:id="addPartMin" layoutX="381.0" layoutY="259.0" />
       <Button layoutX="197.0" layoutY="339.0" mnemonicParsing="false" onAction="#addPartSaveButton" text="Save" />
-      <Button fx:id="cancelButton" layoutX="251.0" layoutY="339.0" mnemonicParsing="false" onAction="#addPartCancelButton" text="Cancel" />
+      <Button layoutX="251.0" layoutY="339.0" mnemonicParsing="false" onAction="#addPartCancelButton" text="Cancel" />
       <Label fx:id="MachineCompanyLabel" layoutX="78.0" layoutY="303.0" text="Machine ID" />
       <Label layoutX="77.0" layoutY="263.0" text="Max" />
       <Label layoutX="76.0" layoutY="229.0" text="Price/Cost" />

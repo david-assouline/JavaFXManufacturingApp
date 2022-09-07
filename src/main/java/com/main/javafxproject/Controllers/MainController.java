@@ -32,6 +32,8 @@ public class MainController implements Initializable {
     @FXML
     TableColumn<Part, Double> partsTablePriceCost;
 
+    public static Part selectedPart;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         partsTable.setItems(Inventory.getAllParts());
@@ -49,21 +51,23 @@ public class MainController implements Initializable {
 
     @FXML
     void partModifyButtonHandler(ActionEvent event) throws IOException {
-        if (partsTable.getSelectionModel().getSelectedItem() == null) {
+        Utility.closeWindow(event);
+        Part part = partsTable.getSelectionModel().getSelectedItem();
+        if (part == null) {
             errorAlert("", "You must select a part to modify");
-
         } else {
-            var temp = partsTable.getSelectionModel().getSelectedItem();
+            selectedPart = part;
             getStage((Main.class.getResource("ModifyPartView.fxml")), "Modify Part", getClass());
         }
     }
 
     @FXML
     void partDeleteButtonHandler(ActionEvent event) throws IOException {
-        if (partsTable.getSelectionModel().getSelectedItem() == null) {
-            errorAlert("", "You must select a part to modify");
-
+        Part part = partsTable.getSelectionModel().getSelectedItem();
+        if (part == null) {
+            errorAlert("", "You must select a part to delete");
         } else {
+            Inventory.deletePart(part);
         }
     }
 
