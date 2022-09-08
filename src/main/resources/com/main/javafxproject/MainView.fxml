@@ -26,12 +26,12 @@
             <TableColumn fx:id="partsTablePriceCost" prefWidth="145.5999755859375" text="Price/Cost per unit" />
         </columns>
       </TableView>
-      <TableView layoutX="487.0" layoutY="108.0" prefHeight="200.0" prefWidth="380.0">
+      <TableView fx:id="productsTable" layoutX="487.0" layoutY="108.0" prefHeight="200.0" prefWidth="380.0">
         <columns>
-          <TableColumn prefWidth="66.4000244140625" text="Product ID" />
-          <TableColumn prefWidth="93.5999755859375" text="Product Name" />
-            <TableColumn prefWidth="96.7999267578125" text="Inventory Level" />
-            <TableColumn prefWidth="121.60003662109375" text="Price/Cost per unit" />
+          <TableColumn fx:id="productsID" prefWidth="66.4000244140625" text="Product ID" />
+          <TableColumn fx:id="productsName" prefWidth="93.5999755859375" text="Product Name" />
+            <TableColumn fx:id="productsInventory" prefWidth="96.7999267578125" text="Inventory Level" />
+            <TableColumn fx:id="productsPriceCost" prefWidth="121.60003662109375" text="Price/Cost per unit" />
         </columns>
       </TableView>
       <Button layoutX="255.0" layoutY="314.0" mnemonicParsing="false" onAction="#partAddButtonHandler" text="Add" />

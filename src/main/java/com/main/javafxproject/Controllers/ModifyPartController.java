@@ -97,7 +97,7 @@ public class ModifyPartController implements Initializable {
     @FXML
     void modifyPartCancelButton(ActionEvent event) throws IOException {
         Utility.closeWindow(event);
-        getStage(Main.class.getResource("MainView.fxml"), "Add Part", getClass());
+        getStage(Main.class.getResource("MainView.fxml"), "Add Part");
     }
 
     @FXML
@@ -121,7 +121,7 @@ public class ModifyPartController implements Initializable {
             Inventory.addPart(outsourced);
         }
         Utility.closeWindow(event);
-        getStage(Main.class.getResource("MainView.fxml"), "Add Part", getClass());
+        getStage(Main.class.getResource("MainView.fxml"), "Add Part");
 
     }
 }
