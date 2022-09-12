@@ -191,27 +191,32 @@ public class ModifyProductController implements Initializable {
     @FXML
     void modifyProductSaveButton(ActionEvent event) throws IOException {
         Random rand = new Random();
-        int id = rand.nextInt(1000000);
-        String name = modifyProductName.getText();
-        double price = Double.parseDouble(modifyProductPrice.getText());
-        int stock = Integer.parseInt(modifyProductInv.getText());
-        int max = Integer.parseInt(modifyProductMax.getText());
-        int min = Integer.parseInt(modifyProductMin.getText());
+        try {
+            int id = rand.nextInt(1000000);
+            String name = modifyProductName.getText();
+            double price = Double.parseDouble(modifyProductPrice.getText());
+            int stock = Integer.parseInt(modifyProductInv.getText());
+            int max = Integer.parseInt(modifyProductMax.getText());
+            int min = Integer.parseInt(modifyProductMin.getText());
 
-        if (min >= max) {
-            errorAlert("Value Error", "Your min value must be inferior to your max value");
-        }
-        if (stock < min || stock > max) {
-            errorAlert("Value Error", " Your inventory quantity must be between min and max values");
-        }
-        Product product = new Product(id, name, price, stock, min, max);
+            if (min >= max) {
+                errorAlert("Value Error", "Your min value must be inferior to your max value");
+            }
+            if (stock < min || stock > max) {
+                errorAlert("Value Error", " Your inventory quantity must be between min and max values");
+            }
+            Product product = new Product(id, name, price, stock, min, max);
 
-        for (Part part: tempPartsList) {
-            product.addAssociatedPart(part);
-        }
+            for (Part part: tempPartsList) {
+                product.addAssociatedPart(part);
+            }
 
-        Inventory.deleteProduct(selectedProduct);
-        Inventory.addProduct(product);
+            Inventory.deleteProduct(selectedProduct);
+            Inventory.addProduct(product);
+        } catch (Exception e) {
+            errorAlert("","Invalid Data");
+            return;
+        }
         Utility.closeWindow(event);
         getStage(Main.class.getResource("MainView.fxml"), "Add Part");
     }

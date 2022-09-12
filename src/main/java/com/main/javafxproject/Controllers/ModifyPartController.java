@@ -131,33 +131,38 @@ public class ModifyPartController implements Initializable {
      */
     @FXML
     void modifyPartSaveButton(ActionEvent event) throws IOException {
-        String name = modifyPartName.getText();
-        Double price = Double.parseDouble(modifyPartPriceCost.getText());
-        int stock = Integer.parseInt(modifyPartInv.getText());
-        int max = Integer.parseInt(modifyPartMax.getText());
-        int min = Integer.parseInt(modifyPartMin.getText());
-        int machineId;
-        String companyName;
+        try {
+            String name = modifyPartName.getText();
+            Double price = Double.parseDouble(modifyPartPriceCost.getText());
+            int stock = Integer.parseInt(modifyPartInv.getText());
+            int max = Integer.parseInt(modifyPartMax.getText());
+            int min = Integer.parseInt(modifyPartMin.getText());
+            int machineId;
+            String companyName;
 
-        if (min >= max) {
-            errorAlert("Value Error", "Your min value must be inferior to your max value");
-            return;
-        }
-        if (stock < min || stock > max) {
-            errorAlert("Value Error", " Your inventory quantity must be between min and max values");
-            return;
-        }
+            if (min >= max) {
+                errorAlert("Value Error", "Your min value must be inferior to your max value");
+                return;
+            }
+            if (stock < min || stock > max) {
+                errorAlert("Value Error", " Your inventory quantity must be between min and max values");
+                return;
+            }
 
-        if (inHouse) {
-            machineId = Integer.parseInt(modifyPartMachineCompanyID.getText());
-            InHouse inHouse = new InHouse(selectedPart.getId(), name, price, stock, max, min, machineId);
-            Inventory.deletePart(selectedPart);
-            Inventory.addPart(inHouse);
-        } else if (outsourced) {
-            companyName = modifyPartMachineCompanyID.getText();
-            Outsourced outsourced = new Outsourced(selectedPart.getId(), name, price, stock, max, min, companyName);
-            Inventory.deletePart(selectedPart);
-            Inventory.addPart(outsourced);
+            if (inHouse) {
+                machineId = Integer.parseInt(modifyPartMachineCompanyID.getText());
+                InHouse inHouse = new InHouse(selectedPart.getId(), name, price, stock, max, min, machineId);
+                Inventory.deletePart(selectedPart);
+                Inventory.addPart(inHouse);
+            } else if (outsourced) {
+                companyName = modifyPartMachineCompanyID.getText();
+                Outsourced outsourced = new Outsourced(selectedPart.getId(), name, price, stock, max, min, companyName);
+                Inventory.deletePart(selectedPart);
+                Inventory.addPart(outsourced);
+            }
+        } catch (Exception e) {
+            errorAlert("","Invalid Data");
+            return;
         }
         Utility.closeWindow(event);
         getStage(Main.class.getResource("MainView.fxml"), "Add Part");

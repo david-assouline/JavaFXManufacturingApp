@@ -138,28 +138,34 @@ public class AddProductController implements Initializable {
     void addProductSaveButton(ActionEvent event) throws IOException {
         Random rand = new Random();
 
-        int id = rand.nextInt(1000000);
-        String name = addProductName.getText();
-        double price = Double.parseDouble(addProductPriceCost.getText());
-        int stock = Integer.parseInt(addProductInv.getText());
-        int max = Integer.parseInt(addProductMax.getText());
-        int min = Integer.parseInt(addProductMin.getText());
+        try {
+            int id = rand.nextInt(1000000);
+            String name = addProductName.getText();
+            double price = Double.parseDouble(addProductPriceCost.getText());
+            int stock = Integer.parseInt(addProductInv.getText());
+            int max = Integer.parseInt(addProductMax.getText());
+            int min = Integer.parseInt(addProductMin.getText());
 
-        if (min >= max) {
-            errorAlert("Value Error", "Your min value must be inferior to your max value");
+            if (min >= max) {
+                errorAlert("Value Error", "Your min value must be inferior to your max value");
+                return;
+            }
+            if (stock < min || stock > max) {
+                errorAlert("Value Error", " Your inventory quantity must be between min and max values");
+                return;
+            }
+
+            Product product = new Product(id, name, price, stock, min, max);
+
+            for (Part part: associatedPartsTable.getItems()) {
+                product.addAssociatedPart(part);
+            }
+            Inventory.addProduct(product);
+        } catch (Exception e) {
+            errorAlert("","Invalid Data");
             return;
         }
-        if (stock < min || stock > max) {
-            errorAlert("Value Error", " Your inventory quantity must be between min and max values");
-            return;
-        }
 
-        Product product = new Product(id, name, price, stock, min, max);
-
-        for (Part part: associatedPartsTable.getItems()) {
-            product.addAssociatedPart(part);
-        }
-        Inventory.addProduct(product);
 
         Utility.closeWindow(event);
         getStage(Main.class.getResource("MainView.fxml"), "Add Part");

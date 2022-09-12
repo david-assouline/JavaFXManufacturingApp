@@ -80,32 +80,37 @@ public class AddPartController {
     void addPartSaveButton(ActionEvent event) throws IOException {
         Random rand = new Random();
 
-        int id = rand.nextInt(1000000);
-        String name = addPartName.getText();
-        Double price = Double.parseDouble(addPartPriceCost.getText());
-        int stock = Integer.parseInt(addPartInv.getText());
-        int max = Integer.parseInt(addPartMax.getText());
-        int min = Integer.parseInt(addPartMin.getText());
-        int machineId;
-        String companyName;
+        try {
+            int id = rand.nextInt(1000000);
+            String name = addPartName.getText();
+            Double price = Double.parseDouble(addPartPriceCost.getText());
+            int stock = Integer.parseInt(addPartInv.getText());
+            int max = Integer.parseInt(addPartMax.getText());
+            int min = Integer.parseInt(addPartMin.getText());
+            int machineId;
+            String companyName;
 
-        if (min >= max) {
-            errorAlert("Value Error", "Your min value must be inferior to your max value");
-            return;
-        }
-        if (stock < min || stock > max) {
-            errorAlert("Value Error", " Your inventory quantity must be between min and max values");
-            return;
-        }
+            if (min >= max) {
+                errorAlert("Value Error", "Your min value must be inferior to your max value");
+                return;
+            }
+            if (stock < min || stock > max) {
+                errorAlert("Value Error", " Your inventory quantity must be between min and max values");
+                return;
+            }
 
-        if (inHouse) {
-            machineId = Integer.parseInt(addPartMachineCompanyID.getText());
-            InHouse inHouse = new InHouse(id, name, price, stock, max, min, machineId);
-            Inventory.addPart(inHouse);
-        } else if (outsourced) {
-            companyName = addPartMachineCompanyID.getText();
-            Outsourced outsourced = new Outsourced(id, name, price, stock, max, min, companyName);
-            Inventory.addPart(outsourced);
+            if (inHouse) {
+                machineId = Integer.parseInt(addPartMachineCompanyID.getText());
+                InHouse inHouse = new InHouse(id, name, price, stock, max, min, machineId);
+                Inventory.addPart(inHouse);
+            } else if (outsourced) {
+                companyName = addPartMachineCompanyID.getText();
+                Outsourced outsourced = new Outsourced(id, name, price, stock, max, min, companyName);
+                Inventory.addPart(outsourced);
+            }
+        } catch (Exception e) {
+            errorAlert("","Invalid Data");
+            return;
         }
         Utility.closeWindow(event);
         getStage(Main.class.getResource("MainView.fxml"), "Add Part");
