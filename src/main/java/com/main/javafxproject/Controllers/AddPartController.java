@@ -16,29 +16,20 @@ import java.util.Random;
 import static com.main.javafxproject.Toolkit.Utility.errorAlert;
 import static com.main.javafxproject.Toolkit.Utility.getStage;
 
-/**
- * The type Add part controller.
- */
 public class AddPartController {
 
     @FXML
     private Label MachineCompanyLabel;
-
     @FXML
     private TextField addPartName;
-
     @FXML
     private TextField addPartInv;
-
     @FXML
     private TextField addPartPriceCost;
-
     @FXML
     private TextField addPartMax;
-
     @FXML
     private TextField addPartMin;
-
     @FXML
     private TextField addPartMachineCompanyID;
 
