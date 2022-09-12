@@ -17,10 +17,17 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static com.main.javafxproject.Toolkit.Utility.errorAlert;
 import static com.main.javafxproject.Toolkit.Utility.getStage;
 
+/**
+ * The type Modify part controller.
+ */
 public class ModifyPartController implements Initializable {
 
+    /**
+     * The Selected part.
+     */
     Part selectedPart = MainController.selectedPart;
 
     @FXML
@@ -80,6 +87,11 @@ public class ModifyPartController implements Initializable {
         }
     }
 
+    /**
+     * In house radio handler.
+     *
+     * @param event the event
+     */
     @FXML
     void InHouseRadioHandler(ActionEvent event) {
         MachineCompanyLabel.setText("Machine ID");
@@ -87,6 +99,11 @@ public class ModifyPartController implements Initializable {
         outsourced = false;
     }
 
+    /**
+     * Outsourced radio handler.
+     *
+     * @param event the event
+     */
     @FXML
     void OutsourcedRadioHandler(ActionEvent event) {
         MachineCompanyLabel.setText("Company Name");
@@ -94,12 +111,24 @@ public class ModifyPartController implements Initializable {
         outsourced = true;
     }
 
+    /**
+     * Modify part cancel button.
+     *
+     * @param event the event
+     * @throws IOException the io exception
+     */
     @FXML
     void modifyPartCancelButton(ActionEvent event) throws IOException {
         Utility.closeWindow(event);
         getStage(Main.class.getResource("MainView.fxml"), "Add Part");
     }
 
+    /**
+     * Modify part save button.
+     *
+     * @param event the event
+     * @throws IOException the io exception
+     */
     @FXML
     void modifyPartSaveButton(ActionEvent event) throws IOException {
         String name = modifyPartName.getText();
@@ -110,6 +139,15 @@ public class ModifyPartController implements Initializable {
         int machineId;
         String companyName;
 
+        if (min >= max) {
+            errorAlert("Value Error", "Your min value must be inferior to your max value");
+            return;
+        }
+        if (stock < min || stock > max) {
+            errorAlert("Value Error", " Your inventory quantity must be between min and max values");
+            return;
+        }
+
         if (inHouse) {
             machineId = Integer.parseInt(modifyPartMachineCompanyID.getText());
             InHouse inHouse = new InHouse(selectedPart.getId(), name, price, stock, max, min, machineId);
@@ -118,6 +156,7 @@ public class ModifyPartController implements Initializable {
         } else if (outsourced) {
             companyName = modifyPartMachineCompanyID.getText();
             Outsourced outsourced = new Outsourced(selectedPart.getId(), name, price, stock, max, min, companyName);
+            Inventory.deletePart(selectedPart);
             Inventory.addPart(outsourced);
         }
         Utility.closeWindow(event);

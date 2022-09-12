@@ -14,15 +14,20 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
 
-import static com.main.javafxproject.Toolkit.Utility.errorAlert;
-import static com.main.javafxproject.Toolkit.Utility.getStage;
+import static com.main.javafxproject.Toolkit.Utility.*;
+import static com.main.javafxproject.Toolkit.Utility.partsSearch;
 
+/**
+ * The type Add product controller.
+ */
 public class AddProductController implements Initializable {
 
     @FXML
@@ -37,25 +42,60 @@ public class AddProductController implements Initializable {
     private TextField addProductMin;
     @FXML
     private TableView<Part> productPartsTable;
+    /**
+     * The Product parts table part id.
+     */
     @FXML
     TableColumn<Part, Integer> productPartsTablePartId;
+    /**
+     * The Product parts table part name.
+     */
     @FXML
     TableColumn<Part, String> productPartsTablePartName;
+    /**
+     * The Product parts table inventory level.
+     */
     @FXML
     TableColumn<Part, Integer> productPartsTableInventoryLevel;
+    /**
+     * The Product parts table price cost.
+     */
     @FXML
     TableColumn<Part, Double> productPartsTablePriceCost;
+    /**
+     * The Associated parts table.
+     */
     @FXML
     TableView<Part> associatedPartsTable;
+    /**
+     * The Associated parts table part id.
+     */
     @FXML
     TableColumn<Part, Integer> associatedPartsTablePartId;
+    /**
+     * The Associated parts table part name.
+     */
     @FXML
     TableColumn<Part, String> associatedPartsTablePartName;
+    /**
+     * The Associated parts table inventory level.
+     */
     @FXML
     TableColumn<Part, Integer> associatedPartsTableInventoryLevel;
+    /**
+     * The Associated parts table price cost.
+     */
     @FXML
     TableColumn<Part, Double> associatedPartsTablePriceCost;
+    /**
+     * The Add product search text.
+     */
+    @FXML
+    TextField addProductSearchText;
 
+    /**
+     * The Temp parts list.
+     */
     ObservableList<Part> tempPartsList = FXCollections.observableArrayList();
 
     @Override
@@ -72,6 +112,11 @@ public class AddProductController implements Initializable {
         associatedPartsTablePriceCost.setCellValueFactory(new PropertyValueFactory<>("price"));
     }
 
+    /**
+     * Product add button.
+     *
+     * @param event the event
+     */
     @FXML
     void productAddButton(ActionEvent event) {
         Part part = productPartsTable.getSelectionModel().getSelectedItem();
@@ -83,6 +128,12 @@ public class AddProductController implements Initializable {
         }
     }
 
+    /**
+     * Add product save button.
+     *
+     * @param event the event
+     * @throws IOException the io exception
+     */
     @FXML
     void addProductSaveButton(ActionEvent event) throws IOException {
         Random rand = new Random();
@@ -93,6 +144,15 @@ public class AddProductController implements Initializable {
         int stock = Integer.parseInt(addProductInv.getText());
         int max = Integer.parseInt(addProductMax.getText());
         int min = Integer.parseInt(addProductMin.getText());
+
+        if (min >= max) {
+            errorAlert("Value Error", "Your min value must be inferior to your max value");
+            return;
+        }
+        if (stock < min || stock > max) {
+            errorAlert("Value Error", " Your inventory quantity must be between min and max values");
+            return;
+        }
 
         Product product = new Product(id, name, price, stock, min, max);
 
@@ -105,20 +165,53 @@ public class AddProductController implements Initializable {
         getStage(Main.class.getResource("MainView.fxml"), "Add Part");
     }
 
+    /**
+     * Remove associated part.
+     *
+     * @param event the event
+     */
     @FXML
     void removeAssociatedPart(ActionEvent event) {
         Part part = associatedPartsTable.getSelectionModel().getSelectedItem();
         if (part == null) {
             errorAlert("", "You must select a part to remove");
         } else {
-            tempPartsList.remove(part);
-            associatedPartsTable.setItems(tempPartsList);
+            if (confirmationAlert("Confirm Removal", "Are you sure you want to remove this associated part?")) {
+                tempPartsList.remove(part);
+                associatedPartsTable.setItems(tempPartsList);
+            }
         }
     }
 
+    /**
+     * Cancel add product button.
+     *
+     * @param event the event
+     * @throws IOException the io exception
+     */
     @FXML
     void cancelAddProductButton(ActionEvent event) throws IOException {
         Utility.closeWindow(event);
         getStage(Main.class.getResource("MainView.fxml"), "Add Part");
+    }
+
+    /**
+     * Add product search handler.
+     *
+     * @param event the event
+     */
+    @FXML
+    void addProductSearchHandler(KeyEvent event) {
+        try {
+            if (event.getCode() == KeyCode.BACK_SPACE && addProductSearchText.getText().length() == 0) {
+                productPartsTable.setItems(Inventory.getAllParts());
+            } else {
+                int searchID = Integer.parseInt(addProductSearchText.getText());
+                productPartsTable.setItems(partsSearch(searchID));
+            }
+        } catch (NumberFormatException e) {
+            String searchName = addProductSearchText.getText();
+            productPartsTable.setItems(partsSearch(searchName));
+        }
     }
 }

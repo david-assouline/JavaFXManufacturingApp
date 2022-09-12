@@ -50,8 +50,8 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Text>
-      <TextField layoutX="265.0" layoutY="81.0" promptText="Search by Part ID or Name" />
-      <TextField layoutX="716.0" layoutY="81.0" promptText="Search by Product ID or Name" />
+      <TextField fx:id="partsSearchText" layoutX="265.0" layoutY="81.0" onKeyReleased="#partsSearchHandler" promptText="Search by Part ID or Name" />
+      <TextField fx:id="productsSearchText" layoutX="716.0" layoutY="81.0" onKeyReleased="#productsSearchHandler" promptText="Search by Product ID or Name" />
       <Button layoutX="844.0" layoutY="364.0" mnemonicParsing="false" onAction="#exitButtonHandler" text="Exit">
          <font>
             <Font name="System Bold" size="14.0" />

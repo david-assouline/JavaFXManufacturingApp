@@ -13,8 +13,12 @@ import javafx.scene.control.TextField;
 import java.io.IOException;
 import java.util.Random;
 
+import static com.main.javafxproject.Toolkit.Utility.errorAlert;
 import static com.main.javafxproject.Toolkit.Utility.getStage;
 
+/**
+ * The type Add part controller.
+ */
 public class AddPartController {
 
     @FXML
@@ -42,6 +46,11 @@ public class AddPartController {
     private boolean outsourced = false;
 
 
+    /**
+     * In house radio handler.
+     *
+     * @param event the event
+     */
     @FXML
     void inHouseRadioHandler(ActionEvent event) {
         MachineCompanyLabel.setText("Machine ID");
@@ -49,6 +58,11 @@ public class AddPartController {
         outsourced = false;
     }
 
+    /**
+     * Outsourced radio handler.
+     *
+     * @param event the event
+     */
     @FXML
     void outsourcedRadioHandler(ActionEvent event) {
         MachineCompanyLabel.setText("Company Name");
@@ -56,6 +70,12 @@ public class AddPartController {
         outsourced = true;
     }
 
+    /**
+     * Add part save button.
+     *
+     * @param event the event
+     * @throws IOException the io exception
+     */
     @FXML
     void addPartSaveButton(ActionEvent event) throws IOException {
         Random rand = new Random();
@@ -68,6 +88,15 @@ public class AddPartController {
         int min = Integer.parseInt(addPartMin.getText());
         int machineId;
         String companyName;
+
+        if (min >= max) {
+            errorAlert("Value Error", "Your min value must be inferior to your max value");
+            return;
+        }
+        if (stock < min || stock > max) {
+            errorAlert("Value Error", " Your inventory quantity must be between min and max values");
+            return;
+        }
 
         if (inHouse) {
             machineId = Integer.parseInt(addPartMachineCompanyID.getText());
@@ -82,6 +111,12 @@ public class AddPartController {
         getStage(Main.class.getResource("MainView.fxml"), "Add Part");
     }
 
+    /**
+     * Add part cancel button.
+     *
+     * @param event the event
+     * @throws IOException the io exception
+     */
     @FXML
     void addPartCancelButton(ActionEvent event) throws IOException {
         Utility.closeWindow(event);
