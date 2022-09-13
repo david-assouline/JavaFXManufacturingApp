@@ -145,7 +145,7 @@ public class ModifyProductController implements Initializable {
             if (stock < min || stock > max) {
                 errorAlert("Value Error", " Your inventory quantity must be between min and max values");
             }
-            Product product = new Product(id, name, price, stock, min, max);
+            Product product = new Product(id, name, price, stock, max, min);
 
             for (Part part: tempPartsList) {
                 product.addAssociatedPart(part);

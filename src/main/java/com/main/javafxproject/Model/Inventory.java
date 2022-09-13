@@ -50,10 +50,12 @@ public class Inventory {
      * @param partName the part name
      * @return the part
      */
-    public static Part lookupPart(String partName) {
+    public static ObservableList<Part> lookupPart(String partName) {
         for (Part part: allParts) {
             if (Objects.equals(part.getName(), partName)) {
-                return part;
+                ObservableList<Part> tempPartsList = FXCollections.observableArrayList();
+                tempPartsList.add(part);
+                return tempPartsList;
             }
         } return null;
     }
@@ -78,10 +80,12 @@ public class Inventory {
      * @param productName the product name
      * @return the product
      */
-    public static Product lookupProduct(String productName) {
+    public static ObservableList<Product> lookupProduct(String productName) {
         for (Product product: allProducts) {
             if (Objects.equals(product.getName(), productName)) {
-                return product;
+                ObservableList<Product> tempProductsList = FXCollections.observableArrayList();
+                tempProductsList.add(product);
+                return tempProductsList;
             }
         } return null;
     }

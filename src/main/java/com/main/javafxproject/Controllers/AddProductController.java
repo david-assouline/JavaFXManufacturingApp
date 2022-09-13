@@ -119,7 +119,7 @@ public class AddProductController implements Initializable {
                 return;
             }
 
-            Product product = new Product(id, name, price, stock, min, max);
+            Product product = new Product(id, name, price, stock, max, min);
 
             for (Part part: associatedPartsTable.getItems()) {
                 product.addAssociatedPart(part);

@@ -22,10 +22,10 @@ public class Product {
      * @param name  the name
      * @param price the price
      * @param stock the stock
-     * @param min   the min
-     * @param max   the max
+     * @param min   the max
+     * @param max   the min
      */
-    public Product(int id, String name, double price, int stock, int min, int max) {
+    public Product(int id, String name, double price, int stock, int max, int min) {
         this.id = id;
         this.name = name;
         this.price = price;
