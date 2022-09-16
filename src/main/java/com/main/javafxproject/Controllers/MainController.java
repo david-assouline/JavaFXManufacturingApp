@@ -22,79 +22,34 @@ import java.util.ResourceBundle;
 
 import static com.main.javafxproject.Toolkit.Utility.*;
 
-/**
- * The type Main controller.
- */
 public class MainController implements Initializable {
 
-    /**
-     * The Parts table.
-     */
     @FXML
     TableView<Part> partsTable;
-    /**
-     * The Parts table part id.
-     */
     @FXML
     TableColumn<Part, Integer> partsTablePartId;
-    /**
-     * The Parts table part name.
-     */
     @FXML
     TableColumn<Part, String> partsTablePartName;
-    /**
-     * The Parts table inventory level.
-     */
     @FXML
     TableColumn<Part, Integer> partsTableInventoryLevel;
-    /**
-     * The Parts table price cost.
-     */
     @FXML
     TableColumn<Part, Double> partsTablePriceCost;
-    /**
-     * The Products table.
-     */
     @FXML
     TableView<Product> productsTable;
-    /**
-     * The Products id.
-     */
     @FXML
     TableColumn<Product, Integer> productsID;
-    /**
-     * The Products name.
-     */
     @FXML
     TableColumn<Product, String> productsName;
-    /**
-     * The Products inventory.
-     */
     @FXML
     TableColumn<Product, Integer> productsInventory;
-    /**
-     * The Products price cost.
-     */
     @FXML
     TableColumn<Product, Double> productsPriceCost;
-    /**
-     * The Parts search text.
-     */
     @FXML
     TextField partsSearchText;
-    /**
-     * The Products search text.
-     */
     @FXML
     TextField productsSearchText;
 
-    /**
-     * The constant selectedPart.
-     */
     public static Part selectedPart;
-    /**
-     * The constant selectedProduct.
-     */
     public static Product selectedProduct;
 
     @Override
@@ -129,6 +84,10 @@ public class MainController implements Initializable {
      *
      * @param event the event
      * @throws IOException the io exception
+     *
+     * RUNTIME ERROR => "NullPointerException" will be caused if the user clicks on the modify button without having
+     * selected a part. To avoid this, an if-else statement has been added to validate that a part has been selected
+     * prior to clicking on the modify button.
      */
     @FXML
     void partModifyButtonHandler(ActionEvent event) throws IOException {

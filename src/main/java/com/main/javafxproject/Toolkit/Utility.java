@@ -45,7 +45,7 @@ public class Utility {
      * @param event the event
      */
     public static void closeWindow(ActionEvent event) {
-        Node source = (Node)  event.getSource();
+        Node source = (Node) event.getSource();
         Stage stage  = (Stage) source.getScene().getWindow();
         stage.close();
     }

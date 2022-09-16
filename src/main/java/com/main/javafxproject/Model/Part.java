@@ -2,17 +2,15 @@ package com.main.javafxproject.Model; /**
 * Supplied class Part.java 
  */
 
-/**
- *
- * @author David-Raphael Assouline
- */
 public abstract class Part {
+
     private int id;
     private String name;
     private double price;
     private int stock;
     private int max;
     private int min;
+
     public Part(int id, String name, double price, int stock, int max, int min) {
         this.id = id;
         this.name = name;

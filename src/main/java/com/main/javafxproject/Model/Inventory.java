@@ -5,9 +5,6 @@ import javafx.collections.ObservableList;
 
 import java.util.Objects;
 
-/**
- * The type Inventory.
- */
 public class Inventory {
     private static ObservableList<Part> allParts = FXCollections.observableArrayList();
     private static ObservableList<Product> allProducts = FXCollections.observableArrayList();
