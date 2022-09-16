@@ -20,8 +20,14 @@ import java.util.ResourceBundle;
 import static com.main.javafxproject.Toolkit.Utility.errorAlert;
 import static com.main.javafxproject.Toolkit.Utility.getStage;
 
+/**
+ * The type Modify part controller.
+ */
 public class ModifyPartController implements Initializable {
 
+    /**
+     * The Selected part.
+     */
     Part selectedPart = MainController.selectedPart;
 
     @FXML

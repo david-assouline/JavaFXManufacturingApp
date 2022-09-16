@@ -25,43 +25,103 @@ import java.util.ResourceBundle;
 import static com.main.javafxproject.Toolkit.Utility.*;
 import static com.main.javafxproject.Toolkit.Utility.partsSearch;
 
+/**
+ * The type Modify product controller.
+ */
 public class ModifyProductController implements Initializable {
+    /**
+     * The Modify product name.
+     */
     @FXML
     TextField modifyProductName;
+    /**
+     * The Modify product id.
+     */
     @FXML
     TextField modifyProductID;
+    /**
+     * The Modify product inv.
+     */
     @FXML
     TextField modifyProductInv;
+    /**
+     * The Modify product price.
+     */
     @FXML
     TextField modifyProductPrice;
+    /**
+     * The Modify product max.
+     */
     @FXML
     TextField modifyProductMax;
+    /**
+     * The Modify product min.
+     */
     @FXML
     TextField modifyProductMin;
+    /**
+     * The Modify products table.
+     */
     @FXML
     TableView<Part> modifyProductsTable;
+    /**
+     * The Product parts table part id.
+     */
     @FXML
     TableColumn<Part, Integer> productPartsTablePartId;
+    /**
+     * The Product parts table part name.
+     */
     @FXML
     TableColumn<Part, String> productPartsTablePartName;
+    /**
+     * The Product parts table inventory level.
+     */
     @FXML
     TableColumn<Part, Integer> productPartsTableInventoryLevel;
+    /**
+     * The Product parts table price cost.
+     */
     @FXML
     TableColumn<Part, Double> productPartsTablePriceCost;
+    /**
+     * The Modify associated product table.
+     */
     @FXML
     TableView<Part> modifyAssociatedProductTable;
+    /**
+     * The Associated parts table part id.
+     */
     @FXML
     TableColumn<Part, Integer> associatedPartsTablePartId;
+    /**
+     * The Associated parts table part name.
+     */
     @FXML
     TableColumn<Part, String> associatedPartsTablePartName;
+    /**
+     * The Associated parts table inventory level.
+     */
     @FXML
     TableColumn<Part, Integer> associatedPartsTableInventoryLevel;
+    /**
+     * The Associated parts table price cost.
+     */
     @FXML
     TableColumn<Part, Double> associatedPartsTablePriceCost;
+    /**
+     * The Modify product search text.
+     */
     @FXML
     TextField modifyProductSearchText;
 
+    /**
+     * The Selected product.
+     */
     Product selectedProduct = MainController.selectedProduct;
+    /**
+     * The Temp parts list.
+     */
     ObservableList<Part> tempPartsList = FXCollections.observableArrayList();
 
     @Override

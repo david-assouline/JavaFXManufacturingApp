@@ -16,6 +16,9 @@ import java.util.Random;
 import static com.main.javafxproject.Toolkit.Utility.errorAlert;
 import static com.main.javafxproject.Toolkit.Utility.getStage;
 
+/**
+ * The type Add part controller.
+ */
 public class AddPartController {
 
     @FXML

@@ -25,6 +25,9 @@ import java.util.ResourceBundle;
 import static com.main.javafxproject.Toolkit.Utility.*;
 import static com.main.javafxproject.Toolkit.Utility.partsSearch;
 
+/**
+ * The type Add product controller.
+ */
 public class AddProductController implements Initializable {
 
     @FXML
@@ -39,27 +42,60 @@ public class AddProductController implements Initializable {
     private TextField addProductMin;
     @FXML
     private TableView<Part> productPartsTable;
+    /**
+     * The Product parts table part id.
+     */
     @FXML
     TableColumn<Part, Integer> productPartsTablePartId;
+    /**
+     * The Product parts table part name.
+     */
     @FXML
     TableColumn<Part, String> productPartsTablePartName;
+    /**
+     * The Product parts table inventory level.
+     */
     @FXML
     TableColumn<Part, Integer> productPartsTableInventoryLevel;
+    /**
+     * The Product parts table price cost.
+     */
     @FXML
     TableColumn<Part, Double> productPartsTablePriceCost;
+    /**
+     * The Associated parts table.
+     */
     @FXML
     TableView<Part> associatedPartsTable;
+    /**
+     * The Associated parts table part id.
+     */
     @FXML
     TableColumn<Part, Integer> associatedPartsTablePartId;
+    /**
+     * The Associated parts table part name.
+     */
     @FXML
     TableColumn<Part, String> associatedPartsTablePartName;
+    /**
+     * The Associated parts table inventory level.
+     */
     @FXML
     TableColumn<Part, Integer> associatedPartsTableInventoryLevel;
+    /**
+     * The Associated parts table price cost.
+     */
     @FXML
     TableColumn<Part, Double> associatedPartsTablePriceCost;
+    /**
+     * The Add product search text.
+     */
     @FXML
     TextField addProductSearchText;
 
+    /**
+     * The Temp parts list.
+     */
     ObservableList<Part> tempPartsList = FXCollections.observableArrayList();
 
     @Override
