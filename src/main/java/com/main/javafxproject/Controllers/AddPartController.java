@@ -65,11 +65,11 @@ public class AddPartController {
     }
 
     /**
-     * Add part save button.
+     * Add part save button. FUTURE IMPROVEMENT - integrate database component so that saved parts are stored
+     * permanently
      *
      * @param event the event
      * @throws IOException the io exception
-     * FUTURE IMPROVEMENT => integrate database component so that saved parts are stored permanently
      */
     @FXML
     void addPartSaveButton(ActionEvent event) throws IOException {

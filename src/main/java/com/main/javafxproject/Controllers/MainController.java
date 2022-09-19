@@ -125,13 +125,12 @@ public class MainController implements Initializable {
     }
 
     /**
-     * Part modify button handler.
+     * Part modify button handler. RUNTIME ERROR -> "NullPointerException" will be caused if the user clicks on the modify button without having
+     * selected a part. To avoid this, an if-else statement has been added to validate that a part has been selected
+     * prior to clicking on the modify button.
      *
      * @param event the event
      * @throws IOException the io exception
-     * RUNTIME ERROR => "NullPointerException" will be caused if the user clicks on the modify button without having
-     * selected a part. To avoid this, an if-else statement has been added to validate that a part has been selected
-     * prior to clicking on the modify button.
      */
     @FXML
     void partModifyButtonHandler(ActionEvent event) throws IOException {
@@ -149,10 +148,9 @@ public class MainController implements Initializable {
      * Part delete button handler.
      *
      * @param event the event
-     * @throws IOException the io exception
      */
     @FXML
-    void partDeleteButtonHandler(ActionEvent event) throws IOException {
+    void partDeleteButtonHandler(ActionEvent event) {
         Part part = partsTable.getSelectionModel().getSelectedItem();
         if (part == null) {
             errorAlert("", "You must select a part to delete");
@@ -234,13 +232,26 @@ public class MainController implements Initializable {
         try {
             if (event.getCode() == KeyCode.BACK_SPACE && partsSearchText.getText().length() == 0) {
                 partsTable.setItems(Inventory.getAllParts());
-            } else {
+            } else if (event.getCode() == KeyCode.ENTER){
                 int searchID = Integer.parseInt(partsSearchText.getText());
-                partsTable.setItems(partsSearch(searchID));
+                if (partsSearch(searchID).size() > 0) {
+                    partsTable.setItems(partsSearch(searchID));
+                } else {
+                    errorAlert("No Parts Found",  String.format("\"%s\" did not return any results", partsSearchText.getText()));
+                    partsSearchText.clear();
+                    partsTable.setItems(Inventory.getAllParts());
+                }
+
             }
         } catch (NumberFormatException e) {
             String searchName = partsSearchText.getText();
-            partsTable.setItems(partsSearch(searchName));
+            if (partsSearch(searchName).size() > 0) {
+                partsTable.setItems(partsSearch(searchName));
+            } else {
+                errorAlert("No Parts Found", String.format("\"%s\" did not return any results", partsSearchText.getText()));
+                partsSearchText.clear();
+                partsTable.setItems(Inventory.getAllParts());
+            }
         }
     }
 
@@ -254,13 +265,27 @@ public class MainController implements Initializable {
         try {
             if (event.getCode() == KeyCode.BACK_SPACE && productsSearchText.getText().length() == 0) {
                 productsTable.setItems(Inventory.getAllProducts());
-            } else {
+            } else if (event.getCode() == KeyCode.ENTER){
                 int searchID = Integer.parseInt(productsSearchText.getText());
-                productsTable.setItems(productsSearch(searchID));
+                if (productsSearch(searchID).size() > 0) {
+                    productsTable.setItems(productsSearch(searchID));
+                } else {
+                    errorAlert("No Products Found",  String.format("\"%s\" did not return any results", productsSearchText.getText()));
+                    productsSearchText.clear();
+                    productsTable.setItems(Inventory.getAllProducts());
+                }
+
             }
         } catch (NumberFormatException e) {
             String searchName = productsSearchText.getText();
-            productsTable.setItems(productsSearch(searchName));
+            if (productsSearch(searchName).size() > 0) {
+                productsTable.setItems(productsSearch(searchName));
+            } else {
+                errorAlert("No Products Found", String.format("\"%s\" did not return any results", productsSearchText.getText()));
+                productsSearchText.clear();
+                productsTable.setItems(Inventory.getAllProducts());
+            }
+
         }
     }
 }

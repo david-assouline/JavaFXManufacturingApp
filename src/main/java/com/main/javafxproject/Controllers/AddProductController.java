@@ -211,13 +211,26 @@ public class AddProductController implements Initializable {
         try {
             if (event.getCode() == KeyCode.BACK_SPACE && addProductSearchText.getText().length() == 0) {
                 productPartsTable.setItems(Inventory.getAllParts());
-            } else {
+            } else if (event.getCode() == KeyCode.ENTER){
                 int searchID = Integer.parseInt(addProductSearchText.getText());
-                productPartsTable.setItems(partsSearch(searchID));
+                if (partsSearch(searchID).size() > 0) {
+                    productPartsTable.setItems(partsSearch(searchID));
+                } else {
+                    errorAlert("No Parts Found",  String.format("\"%s\" did not return any results", addProductSearchText.getText()));
+                    addProductSearchText.clear();
+                    productPartsTable.setItems(Inventory.getAllParts());
+                }
+
             }
         } catch (NumberFormatException e) {
             String searchName = addProductSearchText.getText();
-            productPartsTable.setItems(partsSearch(searchName));
+            if (partsSearch(searchName).size() > 0) {
+                productPartsTable.setItems(partsSearch(searchName));
+            } else {
+                errorAlert("No Parts Found", String.format("\"%s\" did not return any results", addProductSearchText.getText()));
+                addProductSearchText.clear();
+                productPartsTable.setItems(Inventory.getAllParts());
+            }
         }
     }
 }

@@ -243,13 +243,26 @@ public class ModifyProductController implements Initializable {
         try {
             if (event.getCode() == KeyCode.BACK_SPACE && modifyProductSearchText.getText().length() == 0) {
                 modifyProductsTable.setItems(Inventory.getAllParts());
-            } else {
+            } else if (event.getCode() == KeyCode.ENTER){
                 int searchID = Integer.parseInt(modifyProductSearchText.getText());
-                modifyProductsTable.setItems(partsSearch(searchID));
+                if (partsSearch(searchID).size() > 0) {
+                    modifyProductsTable.setItems(partsSearch(searchID));
+                } else {
+                    errorAlert("No Parts Found",  String.format("\"%s\" did not return any results", modifyProductSearchText.getText()));
+                    modifyProductSearchText.clear();
+                    modifyProductsTable.setItems(Inventory.getAllParts());
+                }
+
             }
         } catch (NumberFormatException e) {
             String searchName = modifyProductSearchText.getText();
-            modifyProductsTable.setItems(partsSearch(searchName));
+            if (partsSearch(searchName).size() > 0) {
+                modifyProductsTable.setItems(partsSearch(searchName));
+            } else {
+                errorAlert("No Parts Found", String.format("\"%s\" did not return any results", modifyProductSearchText.getText()));
+                modifyProductSearchText.clear();
+                modifyProductsTable.setItems(Inventory.getAllParts());
+            }
         }
     }
 }
